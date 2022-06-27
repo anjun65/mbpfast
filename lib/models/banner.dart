@@ -3,7 +3,7 @@ part of 'models.dart';
 
 class BannerModel extends Equatable {
   int id;
-  bool is_show;
+  int is_show;
   String photos;
 
   BannerModel(

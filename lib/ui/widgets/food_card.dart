@@ -18,14 +18,14 @@ class FoodCard extends StatelessWidget {
           ]),
       child: Column(
         children: [
-          // Container(
-          //   height: 140,
-          //   decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.only(
-          //           topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-          //       image: DecorationImage(
-          //           image: NetworkImage('https://market.mbpfast.com/storage/'+food.galleries[0].photos), fit: BoxFit.cover)),
-          // ),
+          Container(
+            height: 140,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                image: DecorationImage(
+                    image: NetworkImage('https://market.mbpfast.com/storage/'+food.galleries[0].photos), fit: BoxFit.cover)),
+          ),
           Container(
             margin: EdgeInsets.fromLTRB(12, 12, 12, 6),
             width: 200,

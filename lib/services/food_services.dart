@@ -6,7 +6,7 @@ class FoodServices {
     client ??= http.Client();
 
     
-    String url = baseURL + 'banners';
+    String url = baseURL + 'products';
     var response = await client.get(url);
     print(response);
     if (response.statusCode != 200) {

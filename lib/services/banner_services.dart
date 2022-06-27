@@ -19,7 +19,7 @@ class BannerServices {
     var data = jsonDecode(response.body);
     print(data);
 
-    List<BannerModel> banners = (data['data']['data'] as Iterable)
+    List<BannerModel> banners = (data['data'] as Iterable)
         .map((e) => BannerModel.fromJson(e))
         .toList();
 

@@ -24,7 +24,7 @@ class BannerCard extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8), topRight: Radius.circular(8)),
                 image: DecorationImage(
-                    image: NetworkImage('https://market.mbpfast.com/storage'+banner.photos), fit: BoxFit.cover)),
+                    image: NetworkImage('https://market.mbpfast.com/storage/'+banner.photos), fit: BoxFit.cover)),
           ),
         ],
       ),

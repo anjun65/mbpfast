@@ -25,15 +25,15 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
               child: Container(
             color: Colors.white,
           )),
-          // SafeArea(
-          //     child: Container(
-          //   height: 300,
-          //   width: double.infinity,
-          //   decoration: BoxDecoration(
-          //       image: DecorationImage(
-          //           image: NetworkImage(widget.transaction.food.galleries.photos),
-          //           fit: BoxFit.cover)),
-          // )),
+          SafeArea(
+              child: Container(
+            height: 300,
+            width: double.infinity,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage('https://market.mbpfast.com/storage/'+widget.transaction.food.galleries[0].photos),
+                    fit: BoxFit.cover)),
+          )),
           SafeArea(
               child: ListView(
             children: [

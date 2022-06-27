@@ -9,7 +9,7 @@ class Food extends Equatable {
   final int price;
   final String description;
   final String photos;
-  // final GalleryModel galleries;
+  List<GalleryModel> galleries;
 
 
   Food(
@@ -19,7 +19,7 @@ class Food extends Equatable {
         this.price,
         this.description,
         this.photos,
-        // this.galleries,
+        this.galleries,
       });
 
   factory Food.fromJson(Map<String, dynamic> data) => Food(
@@ -29,10 +29,10 @@ class Food extends Equatable {
       price: data['price'],
       description: data['description'],
       photos: data['photos'],
-      // galleries : GalleryModel.fromJson(data['id']),
+      galleries : List<GalleryModel>.from(data["galleries"].map((x) => GalleryModel.fromJson(x))),
   );
 
   @override
   List<Object> get props =>
-      [id, name, categories_id, price, description, photos];
+      [id, name, categories_id, price, description, galleries, photos];
 }
