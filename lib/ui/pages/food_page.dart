@@ -61,24 +61,24 @@ class _FoodPageState extends State<FoodPage> {
               child: BlocBuilder<BannerCubit, BannerState>(
                 builder: (_, state) => (state is BannerLoaded)
                     ? ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    Row(
-                      children: state.banners
-                          .map((e) => Padding(
-                        padding: EdgeInsets.only(
-                            left: (e == state.banners.first)
-                                ? defaultMargin
-                                : 0,
-                            right: defaultMargin),
-                        child: GestureDetector(
-                            onTap: () {
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Row(
+                            children: state.banners
+                                .map((e) => Padding(
+                              padding: EdgeInsets.only(
+                                  left: (e == state.banners.first)
+                                      ? defaultMargin
+                                      : 0,
+                                  right: defaultMargin),
+                              child: GestureDetector(
+                                  onTap: () {
 
-                            },
-                            child: BannerCard(e)),
-                      ))
-                          .toList(),
-                    )
+                                  },
+                                  child: BannerCard(e)),
+                            ))
+                                .toList(),
+                          )
                   ],
                 )
                     : Center(child: loadingIndicator),

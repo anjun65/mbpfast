@@ -5,10 +5,10 @@ class FoodServices {
       {http.Client client}) async {
     client ??= http.Client();
 
-    String url = baseURL + 'products';
-
+    
+    String url = baseURL + 'banners';
     var response = await client.get(url);
-
+    print(response);
     if (response.statusCode != 200) {
       return ApiReturnValue(message: 'Please try again');
     }

@@ -31,7 +31,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
           //   width: double.infinity,
           //   decoration: BoxDecoration(
           //       image: DecorationImage(
-          //           image: NetworkImage(widget.transaction.food.picturePath),
+          //           image: NetworkImage(widget.transaction.food.galleries.photos),
           //           fit: BoxFit.cover)),
           // )),
           SafeArea(

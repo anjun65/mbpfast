@@ -81,7 +81,8 @@ class _SignInPageState extends State<SignInPage> {
                           emailController.text, passwordController.text);
                       UserState state = context.bloc<UserCubit>().state;
 
-                      if (state is UserLoaded) {
+                      if (state is UserLoaded) {                        
+                        // context.bloc<BannerCubit>().getBanners();
                         context.bloc<FoodCubit>().getFoods();
                         context.bloc<TransactionCubit>().getTransactions();
                         Get.to(MainPage());

@@ -1,14 +1,16 @@
 part of 'services.dart';
 
 class BannerServices {
+  
   static Future<ApiReturnValue<List<BannerModel>>> getBanners(
       {http.Client client}) async {
     client ??= http.Client();
+    print('keluarr test');
 
     String url = baseURL + 'banners';
     print(url);
     var response = await client.get(url);
-    print('keluarr');
+    
     print(response);
     if (response.statusCode != 200) {
       return ApiReturnValue(message: 'Please try again');
