@@ -6,3 +6,5 @@ part 'user.dart';
 part 'api_return_value.dart';
 part 'banner.dart';
 part 'gallery_model.dart';
+part 'category.dart';
+part 'cart.dart';
