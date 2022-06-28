@@ -20,9 +20,9 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> signUp(User user, String password, {File pictureFile}) async {
+  Future<void> signUp(User user, String password) async {
     ApiReturnValue<User> result =
-        await UserServices.signUp(user, password, pictureFile: pictureFile);
+        await UserServices.signUp(user, password);
 
     if (result.value != null) {
       emit(UserLoaded(result.value));
@@ -31,14 +31,14 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  Future<void> uploadProfilePicture(File pictureFile) async {
-    ApiReturnValue<String> result =
-        await UserServices.uploadProfilePicture(pictureFile);
+  // Future<void> uploadProfilePicture(File pictureFile) async {
+  //   ApiReturnValue<String> result =
+  //       await UserServices.uploadProfilePicture(pictureFile);
 
-    if (result.value != null) {
-      emit(UserLoaded((state as UserLoaded).user.copyWith(
-          picturePath: "https://market.mbpfast.com/storage/" +
-              result.value)));
-    }
-  }
+  //   if (result.value != null) {
+  //     emit(UserLoaded((state as UserLoaded).user.copyWith(
+  //         picturePath: "https://market.mbpfast.com/storage/" +
+  //             result.value)));
+  //   }
+  // }
 }

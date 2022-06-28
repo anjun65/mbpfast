@@ -7,7 +7,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   TextEditingController emailController = TextEditingController()..text = 'hajrulkhaira@gmail.com';
-  TextEditingController passwordController = TextEditingController()
+  TextEditingController passwordController = TextEditingController()..text = 'whatthefull';
   bool isLoading = false;
 
   @override

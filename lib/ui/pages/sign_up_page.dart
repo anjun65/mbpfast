@@ -7,7 +7,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   User user;
-  File pictureFile;
+  
+  bool isLoading = false;
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -23,40 +24,6 @@ class _SignUpPageState extends State<SignUpPage> {
       },
       child: Column(
         children: [
-          GestureDetector(
-            onTap: () async {
-              PickedFile pickedFile =
-                  await ImagePicker().getImage(source: ImageSource.gallery);
-              if (pickedFile != null) {
-                pictureFile = File(pickedFile.path);
-                setState(() {});
-              }
-            },
-            child: Container(
-              width: 110,
-              height: 110,
-              margin: EdgeInsets.only(top: 26),
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/photo_border.png'))),
-              child: (pictureFile != null)
-                  ? Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: FileImage(pictureFile),
-                              fit: BoxFit.cover)),
-                    )
-                  : Container(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                              image: AssetImage('assets/photo.png'),
-                              fit: BoxFit.cover)),
-                    ),
-            ),
-          ),
           Container(
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
@@ -132,26 +99,64 @@ class _SignUpPageState extends State<SignUpPage> {
             margin: EdgeInsets.only(top: 24),
             height: 45,
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-            child: RaisedButton(
-              onPressed: () {
-                Get.to(AddressPage(
-                    User(
-                      name: nameController.text,
-                      email: emailController.text,
+            child: (isLoading == true)
+                ? Center(
+                    child: loadingIndicator,
+                  )
+                : RaisedButton(
+                    onPressed: () async {
+                      user = User(
+                        name: nameController.text,
+                        email: emailController.text,
+                      );
+
+                      setState(() {
+                        isLoading = true;
+                      });
+
+                      await context.bloc<UserCubit>().signUp(
+                          user, passwordController.text,
+                      );
+
+                      UserState state = context.bloc<UserCubit>().state;
+
+                      if (state is UserLoaded) {
+                        context.bloc<BannerCubit>().getBanners();
+                        context.bloc<FoodCubit>().getFoods();
+                        context.bloc<TransactionCubit>().getTransactions();
+                        Get.to(MainPage());
+                      } else {
+                        Get.snackbar("", "",
+                            backgroundColor: "D9435E".toColor(),
+                            icon: Icon(
+                              MdiIcons.closeCircleOutline,
+                              color: Colors.white,
+                            ),
+                            titleText: Text(
+                              "Sign In Failed",
+                              style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            messageText: Text(
+                              (state as UserLoadingFailed).message,
+                              style: GoogleFonts.poppins(color: Colors.white),
+                            ));
+                        setState(() {
+                          isLoading = false;
+                        });
+                      }
+                    },
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    color: mainColor,
+                    child: Text(
+                      'Sign Up Now',
+                      style: GoogleFonts.poppins(
+                          color: Colors.black, fontWeight: FontWeight.w500),
                     ),
-                    passwordController.text,
-                    pictureFile));
-              },
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8)),
-              color: mainColor,
-              child: Text(
-                'Continue',
-                style: GoogleFonts.poppins(
-                    color: Colors.black, fontWeight: FontWeight.w500),
-              ),
-            ),
+                  ),
           ),
         ],
       ),

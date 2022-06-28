@@ -56,34 +56,57 @@ class _FoodPageState extends State<FoodPage> {
             ),
             //// LIST OF BANNER
             Container(
-              height: 258,
+              height: 180,
               width: double.infinity,
               child: BlocBuilder<BannerCubit, BannerState>(
                 builder: (_, state) => (state is BannerLoaded)
-                    ? ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          Row(
-                            children: state.banners
-                                .map((e) => Padding(
-                              padding: EdgeInsets.only(
-                                  left: (e == state.banners.first)
-                                      ? defaultMargin
-                                      : 0,
-                                  right: defaultMargin),
-                              child: GestureDetector(
-                                  onTap: () {
-
-                                  },
-                                  child: BannerCard(e)),
+                    ? CarouselSlider(
+                        items: state.banners
+                        .map((item) => Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Center(
+                                  child:
+                                      Image.network('https://market.mbpfast.com/storage/'+item.photos, fit: BoxFit.cover, width: 1000)),
                             ))
-                                .toList(),
-                          )
-                  ],
-                )
+                        .toList(),
+                        options: CarouselOptions(
+                          autoPlay: true,
+                        ),
+                      )
                     : Center(child: loadingIndicator),
               ),
             ),
+
+            Container(
+              height: 24,
+              padding: EdgeInsets.only(left: 24),
+              width: double.infinity,
+              child: Text('Categories',
+                  style: blackFontStyle2,
+                  maxLines: 1,
+                  overflow: TextOverflow.clip,
+              ),
+            ),
+
+            //// LIST OF BANNER (TABS)
+            //// LIST OF FOOD
+            Container(
+              height: 200,
+              width: double.infinity,
+              
+            ),
+
+            Container(
+              height: 24,
+              padding: EdgeInsets.only(left: 24),
+              width: double.infinity,
+              child: Text('New Products',
+                  style: blackFontStyle2,
+                  maxLines: 1,
+                  overflow: TextOverflow.clip,
+              ),
+            ),
+
             //// LIST OF BANNER (TABS)
             //// LIST OF FOOD
             Container(

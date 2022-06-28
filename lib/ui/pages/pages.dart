@@ -17,11 +17,12 @@ import 'package:get/get.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:developer';
+import 'package:carousel_slider/carousel_slider.dart';
 
 part 'general_page.dart';
 part 'sign_in_page.dart';
 part 'sign_up_page.dart';
-part 'address_page.dart';
+// part 'address_page.dart';
 part 'main_page.dart';
 part 'food_page.dart';
 part 'food_details_page.dart';

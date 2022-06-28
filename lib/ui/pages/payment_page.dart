@@ -10,6 +10,13 @@ class PaymentPage extends StatefulWidget {
 }
 
 class _PaymentPageState extends State<PaymentPage> {
+  TextEditingController address1Controller = TextEditingController();
+  TextEditingController address2Controller = TextEditingController();
+  TextEditingController provinceController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController postalCodeController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+
   bool isLoading = false;
 
   @override
@@ -42,17 +49,19 @@ class _PaymentPageState extends State<PaymentPage> {
                   children: [
                     Row(
                       children: [
-                        // Container(
-                        //   width: 60,
-                        //   height: 60,
-                        //   margin: EdgeInsets.only(right: 12),
-                        //   decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(8),
-                        //       image: DecorationImage(
-                        //           image: NetworkImage(
-                        //               widget.transaction.food.picturePath),
-                        //           fit: BoxFit.cover)),
-                        // ),
+                        Container(
+                          width: 60,
+                          height: 60,
+                          margin: EdgeInsets.only(right: 12),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://market.mbpfast.com/storage/' +
+                                          widget.transaction.food.galleries[0]
+                                              .photos),
+                                  fit: BoxFit.cover)),
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -127,7 +136,6 @@ class _PaymentPageState extends State<PaymentPage> {
                 SizedBox(
                   height: 6,
                 ),
-
                 SizedBox(
                   height: 6,
                 ),
@@ -163,124 +171,272 @@ class _PaymentPageState extends State<PaymentPage> {
               ],
             ),
           ),
-          //// Bagian bawah
           Container(
-            margin: EdgeInsets.only(bottom: defaultMargin),
-            padding:
-                EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 16),
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Deliver to',
-                  style: blackFontStyle3,
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                        width: 80,
-                        child: Text(
-                          'Name',
-                          style: greyFontStyle,
-                        )),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width -
-                            2 * defaultMargin -
-                            80,
-                        child: Text(
-                          widget.transaction.user.name,
-                          style: blackFontStyle3,
-                          textAlign: TextAlign.right,
-                        ))
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Phone Number',
-                      style: greyFontStyle,
-                    ),
-                    Text(
-                      widget.transaction.user.phoneNumber,
-                      style: blackFontStyle3,
-                      textAlign: TextAlign.right,
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                        width: 80,
-                        child: Text(
-                          'Address',
-                          style: greyFontStyle,
-                        )),
-                    SizedBox(
-                        width: MediaQuery.of(context).size.width -
-                            2 * defaultMargin -
-                            80,
-                        child: Text(
-                          widget.transaction.user.address,
-                          style: blackFontStyle3,
-                          textAlign: TextAlign.right,
-                        ))
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'House Number',
-                      style: greyFontStyle,
-                    ),
-                    Text(
-                      widget.transaction.user.houseNumber,
-                      style: blackFontStyle3,
-                      textAlign: TextAlign.right,
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 6,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'City',
-                      style: greyFontStyle,
-                    ),
-                    Text(
-                      widget.transaction.user.city,
-                      style: blackFontStyle3,
-                      textAlign: TextAlign.right,
-                    )
-                  ],
-                ),
-              ],
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            child: Text(
+              "Address 1",
+              style: blackFontStyle2,
             ),
           ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.black)),
+            child: TextField(
+              controller: address1Controller,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintStyle: greyFontStyle,
+                  hintText: 'Masukkan Alamat anda'),
+            ),
+          ),
+
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            child: Text(
+              "Address 2",
+              style: blackFontStyle2,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.black)),
+            child: TextField(
+              controller: address1Controller,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintStyle: greyFontStyle,
+                  hintText: 'Masukkan Alamat anda'),
+            ),
+          ),
+
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            child: Text(
+              "Province",
+              style: blackFontStyle2,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.black)),
+            child: TextField(
+              controller: address1Controller,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintStyle: greyFontStyle,
+                  hintText: 'Pilih provinsi anda'),
+            ),
+          ),
+
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            child: Text(
+              "City",
+              style: blackFontStyle2,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.black)),
+            child: TextField(
+              controller: address1Controller,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintStyle: greyFontStyle,
+                  hintText: 'Pilih kota anda'),
+            ),
+          ),
+
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            child: Text(
+              "Postal Code",
+              style: blackFontStyle2,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.black)),
+            child: TextField(
+              controller: address1Controller,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintStyle: greyFontStyle,
+                  hintText: 'Masukkan Kode Pos'),
+            ),
+          ),
+
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
+            child: Text(
+              "Mobile Phone",
+              style: blackFontStyle2,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: Colors.black)),
+            child: TextField(
+              controller: address1Controller,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintStyle: greyFontStyle,
+                  hintText: 'Masukkan Nomor Telpon anda'),
+            ),
+          ),
+
+          SizedBox(
+                  height: 24,
+          ),
+          
+          //// Bagian bawah
+          // Container(
+          //   margin: EdgeInsets.only(bottom: defaultMargin),
+          //   padding:
+          //       EdgeInsets.symmetric(horizontal: defaultMargin, vertical: 16),
+          //   color: Colors.white,
+          //   child: Column(
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: [
+          //       Text(
+          //         'Deliver to',
+          //         style: blackFontStyle3,
+          //       ),
+          //       SizedBox(
+          //         height: 8,
+          //       ),
+          //       Row(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           SizedBox(
+          //               width: 80,
+          //               child: Text(
+          //                 'Name',
+          //                 style: greyFontStyle,
+          //               )),
+          //           SizedBox(
+          //               width: MediaQuery.of(context).size.width -
+          //                   2 * defaultMargin -
+          //                   80,
+          //               child: Text(
+          //                 widget.transaction.user.name,
+          //                 style: blackFontStyle3,
+          //                 textAlign: TextAlign.right,
+          //               ))
+          //         ],
+          //       ),
+          //       SizedBox(
+          //         height: 6,
+          //       ),
+          //       Row(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Phone Number',
+          //             style: greyFontStyle,
+          //           ),
+          //           Text(
+          //             widget.transaction.user.phoneNumber,
+          //             style: blackFontStyle3,
+          //             textAlign: TextAlign.right,
+          //           )
+          //         ],
+          //       ),
+          //       SizedBox(
+          //         height: 6,
+          //       ),
+          //       Row(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           SizedBox(
+          //               width: 80,
+          //               child: Text(
+          //                 'Address',
+          //                 style: greyFontStyle,
+          //               )),
+          //           SizedBox(
+          //               width: MediaQuery.of(context).size.width -
+          //                   2 * defaultMargin -
+          //                   80,
+          //               child: Text(
+          //                 widget.transaction.user.address,
+          //                 style: blackFontStyle3,
+          //                 textAlign: TextAlign.right,
+          //               ))
+          //         ],
+          //       ),
+          //       SizedBox(
+          //         height: 6,
+          //       ),
+          //       Row(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'House Number',
+          //             style: greyFontStyle,
+          //           ),
+          //           Text(
+          //             widget.transaction.user.houseNumber,
+          //             style: blackFontStyle3,
+          //             textAlign: TextAlign.right,
+          //           )
+          //         ],
+          //       ),
+          //       SizedBox(
+          //         height: 6,
+          //       ),
+          //       Row(
+          //         crossAxisAlignment: CrossAxisAlignment.start,
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'City',
+          //             style: greyFontStyle,
+          //           ),
+          //           Text(
+          //             widget.transaction.user.city,
+          //             style: blackFontStyle3,
+          //             textAlign: TextAlign.right,
+          //           )
+          //         ],
+          //       ),
+          //     ],
+          //   ),
+          // ),
           //// Checkout Button
           (isLoading)
               ? Center(
@@ -335,8 +491,12 @@ class _PaymentPageState extends State<PaymentPage> {
                           blackFontStyle3.copyWith(fontWeight: FontWeight.w500),
                     ),
                   ),
-                )
+                ),
+                SizedBox(
+                        height: 24,
+                ),
         ],
+        
       ),
     );
   }

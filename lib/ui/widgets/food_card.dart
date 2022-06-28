@@ -36,10 +36,15 @@ class FoodCard extends StatelessWidget {
               overflow: TextOverflow.clip,
             ),
           ),
-          // Padding(
-          //   padding: EdgeInsets.only(left: 12),
-          //   child: RatingStars(food.rate),
-          // )
+          Container(
+            padding: EdgeInsets.only(left: 0),
+            child: Text(
+              'Rp.' + food.price.toString(),
+              style: blackFontStyle2,
+              maxLines: 1,
+              overflow: TextOverflow.clip,
+            )
+          )
         ],
       ),
     );
