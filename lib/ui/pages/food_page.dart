@@ -93,7 +93,31 @@ class _FoodPageState extends State<FoodPage> {
             Container(
               height: 200,
               width: double.infinity,
-              
+              child: BlocBuilder<CategoryCubit, CategoryState>(
+                builder: (_, state) => (state is CategoryLoaded)
+                    ? ListView(
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          Row(
+                            children: state.categories
+                                .map((kategori) => Padding(
+                                      padding: EdgeInsets.only(
+                                          left: (e == state.categories.first)
+                                              ? defaultMargin
+                                              : 0,
+                                          right: defaultMargin),
+                                      child: GestureDetector(
+                                          onTap: () {
+                                            
+                                          },
+                                          child: CategoryCard(kategori)),
+                                    ))
+                                .toList(),
+                          )
+                        ],
+                      )
+                    : Center(child: loadingIndicator),
+              ),
             ),
 
             Container(

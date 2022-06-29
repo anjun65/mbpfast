@@ -13,3 +13,4 @@ part 'custom_tabbar.dart';
 part 'food_list_item.dart';
 part 'order_list_item.dart';
 part 'banner_card.dart';
+part 'category_card.dart';

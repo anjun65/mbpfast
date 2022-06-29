@@ -10,5 +10,7 @@ part 'banner_services.dart';
 part 'category_services.dart';
 part 'transaction_services.dart';
 part 'cart_services.dart';
+part 'province_services.dart';
+part 'region_services.dart';
 
 String baseURL = 'https://market.mbpfast.com/api/';

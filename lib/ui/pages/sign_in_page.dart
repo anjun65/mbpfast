@@ -6,8 +6,10 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-  TextEditingController emailController = TextEditingController()..text = 'hajrulkhaira@gmail.com';
-  TextEditingController passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController()
+    ..text = 'hajrulkhaira@gmail.com';
+  TextEditingController passwordController = TextEditingController()
+    ..text = 'whatthefull';
   bool isLoading = false;
 
   @override
@@ -81,10 +83,13 @@ class _SignInPageState extends State<SignInPage> {
                           emailController.text, passwordController.text);
                       UserState state = context.bloc<UserCubit>().state;
 
-                      if (state is UserLoaded) {                        
+                      if (state is UserLoaded) {
                         context.bloc<BannerCubit>().getBanners();
                         context.bloc<FoodCubit>().getFoods();
+                        context.bloc<ProvinceCubit>().getProvinces();
                         context.bloc<TransactionCubit>().getTransactions();
+                        
+
                         Get.to(MainPage());
                       } else {
                         Get.snackbar("", "",

@@ -12,8 +12,10 @@ class PaymentPage extends StatefulWidget {
 class _PaymentPageState extends State<PaymentPage> {
   TextEditingController address1Controller = TextEditingController();
   TextEditingController address2Controller = TextEditingController();
-  TextEditingController provinceController = TextEditingController();
-  TextEditingController cityController = TextEditingController();
+  
+  String selectedProvince;
+  String selectedCity;
+
   TextEditingController postalCodeController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
 
@@ -211,7 +213,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: Colors.black)),
             child: TextField(
-              controller: address1Controller,
+              controller: address2Controller,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: greyFontStyle,
@@ -228,20 +230,34 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
           ),
           Container(
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.black)),
-            child: TextField(
-              controller: address1Controller,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintStyle: greyFontStyle,
-                  hintText: 'Pilih provinsi anda'),
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.black)),
+              child: BlocBuilder<ProvinceCubit, ProvinceState>(
+                builder: (_, state) => (state is ProvinceLoaded)
+                    ? DropdownButton(
+                      value: selectedProvince,
+                      isExpanded: true,
+                      underline: SizedBox(),
+                      items: state.provinces
+                          .map((e) => DropdownMenuItem(
+                              value: e.name,
+                              child: Text(
+                                e.name,
+                                style: blackFontStyle3,
+                              )))
+                          .toList(),
+                      onChanged: (item) {
+                        setState(() {
+                          selectedProvince = item;
+                        });
+                      })
+                    : Center(child: loadingIndicator),
+              ),
             ),
-          ),
 
           Container(
             width: double.infinity,
@@ -252,20 +268,35 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
           ),
           Container(
-            width: double.infinity,
-            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: Colors.black)),
-            child: TextField(
-              controller: address1Controller,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintStyle: greyFontStyle,
-                  hintText: 'Pilih kota anda'),
+              width: double.infinity,
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.black)),
+              child: BlocBuilder<RegionCubit, RegionState>(
+                builder: (_, state) => (state is ProvinceLoaded)
+                    ? DropdownButton(
+                      value: selectedProvince,
+                      isExpanded: true,
+                      underline: SizedBox(),
+                      items: state.provinces
+                          .map((e) => DropdownMenuItem(
+                              value: e.name,
+                              child: Text(
+                                e.name,
+                                style: blackFontStyle3,
+                              )))
+                          .toList(),
+                      onChanged: (item) {
+                        setState(() {
+                          selectedProvince = item;
+                        });
+                      })
+                    : Center(child: loadingIndicator),
+              ),
             ),
-          ),
+
 
           Container(
             width: double.infinity,
@@ -283,7 +314,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: Colors.black)),
             child: TextField(
-              controller: address1Controller,
+              controller: postalCodeController,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: greyFontStyle,
@@ -307,7 +338,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 borderRadius: BorderRadius.circular(8),
                 border: Border.all(color: Colors.black)),
             child: TextField(
-              controller: address1Controller,
+              controller: mobileController,
               decoration: InputDecoration(
                   border: InputBorder.none,
                   hintStyle: greyFontStyle,

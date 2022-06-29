@@ -8,3 +8,5 @@ part 'banner.dart';
 part 'gallery_model.dart';
 part 'category.dart';
 part 'cart.dart';
+part 'province.dart';
+part 'region.dart';
