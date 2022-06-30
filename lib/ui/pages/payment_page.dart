@@ -275,12 +275,12 @@ class _PaymentPageState extends State<PaymentPage> {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.black)),
               child: BlocBuilder<RegionCubit, RegionState>(
-                builder: (_, state) => (state is ProvinceLoaded)
+                builder: (_, state) => (state is RegionLoaded)
                     ? DropdownButton(
-                      value: selectedProvince,
+                      value: selectedCity,
                       isExpanded: true,
                       underline: SizedBox(),
-                      items: state.provinces
+                      items: state.regions
                           .map((e) => DropdownMenuItem(
                               value: e.name,
                               child: Text(
@@ -290,7 +290,7 @@ class _PaymentPageState extends State<PaymentPage> {
                           .toList(),
                       onChanged: (item) {
                         setState(() {
-                          selectedProvince = item;
+                          selectedCity = item;
                         });
                       })
                     : Center(child: loadingIndicator),
